@@ -1,0 +1,30 @@
+﻿@model EvidencijaAvioKarata.ViewModels.KompanijaForma
+@{
+    ViewBag.Title = "KompanijaForma";
+}
+
+<div class="custom-container">
+    <h2>Kompanija forma</h2>
+
+    @using (Html.BeginForm("Sacuvaj", "Kompanije"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(p => p.Kompanija.Ime)
+            @Html.TextBoxFor(p => p.Kompanija.Ime, new { @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.Kompanija.Ime)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Kompanija.Drzava)
+            @Html.TextBoxFor(p => p.Kompanija.Drzava, new { @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.Kompanija.Drzava)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Kompanija.KlasaId)
+            @Html.DropDownListFor(m => m.Kompanija.KlasaId, new SelectList(Model.Klase, "Id", "Naziv"), "Izaberi klasu", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Kompanija.KlasaId)
+        </div>
+        @Html.HiddenFor(p => p.Kompanija.Id)
+        <button class="btn btn-danger" type="submit">Sačuvaj</button>
+    }
+</div>
+

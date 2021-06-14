@@ -1,0 +1,80 @@
+﻿@model IEnumerable<EvidencijaAvioKarata.Models.Karta>
+@{
+    ViewBag.Title = "Karte";
+}
+
+<div class="custom-container">
+    <h2>Karte</h2>
+
+    <table id="karte" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tip karte</th>
+                <th>Destinacija</th>
+                <th>Kompanija</th>
+                <th>Datum i vreme</th>
+                <th>Cena</th>
+                <th>Obriši</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    @Html.ActionLink("Dodaj kartu", "DodajKartu", "Karte", new { @class = "btn btn-danger" })
+</div>
+    @section scripts
+{
+        <script>
+            $(document).ready(function () {
+                var table = $("#karte").DataTable({
+                    ajax: {
+                        url: "/api/karte/",
+                        method: "GET",
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            data: "tipKarte",
+                            render: function (data, type, karta) {
+                                return "<a href='/karte/kartaForma" + karta.Id + "'>" + karta.tipKarte + "</a>";
+                            }
+                        },
+
+                        {
+                            data: "destinacija.naziv"
+                        },
+                        {
+                            data: "kompanija.ime"
+                        },
+                        {
+                            data: "datumIVreme"
+                        },
+                        {
+                            data: "cena"
+                        },
+                        {
+                            data: "id",
+                            render: function (data) {
+                                return "<button class='btn-link js-delete' data-karta-id=" + data + ">Obrisi</button>";
+                            }
+                        }
+                    ]
+                });
+
+                $("#karte").on("click", ".js-delete", function () {
+                    var button = $(this);
+                    bootbox.confirm("Da li ste sigurni da želite da obrišete ovu kartu?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/karte/" + button.attr("data-karta-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                }
+                            })
+                        }
+                    })
+                })
+            });
+        </script>
+    }

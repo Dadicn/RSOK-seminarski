@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="hero" style="background-image: url(/Images/cover.jpg)">
+    <h1 class="hero-heading">Evidencija avio karata</h1>
+</div>
+<div>
+    <h2 class="between-heading">Moguća je evidencija sledećih tabela: </h2>
+</div>
+<div class="main-columns">
+    <div class="col-lg-3 single-column">
+        <h3 class="columns-heading">Karte</h3>
+        <p class="columns-paragraph">Evidencija karata: </p>
+        <ul class="columns-list">
+            <li class="columns-list-item">Tip karte</li>
+            <li class="columns-list-item">Destinacija leta</li>
+            <li class="columns-list-item">Kompanija</li>
+            <li class="columns-list-item">Datum</li>
+            <li class="columns-list-item">Cena</li>
+        </ul>
+        <a href="~/Karte" class="btn btn-primary columns-btn">Karte</a>
+    </div>
+    <div class="col-lg-3 single-column">
+        <h3 class="columns-heading">Kompanije</h3>
+        <p class="columns-paragraph">Evidencija kompanija: </p>
+        <ul class="columns-list">
+            <li class="columns-list-item">Ime kompanije</li>
+            <li class="columns-list-item">Država</li>
+            <li class="columns-list-item">Klasa</li>
+        </ul>
+        <a href="~/Kompanije" class="btn btn-primary columns-btn">Kompanije</a>
+
+    </div>
+    <div class="col-lg-3 single-column">
+        <h3 class="columns-heading">Destinacije</h3>
+        <p class="columns-paragraph">Evidencija destinacija: </p>
+        <ul class="columns-list">
+            <li class="columns-list-item">Naziv destinacije</li>
+            <li class="columns-list-item">Ime aerodroma</li>
+            <li class="columns-list-item">Grad</li>
+        </ul>
+        <a href="~/Destinacije" class="btn btn-primary columns-btn">Destinacije</a>
+    </div>
+    <div class="col-lg-3 single-column">
+        <h3 class="columns-heading">Kupci</h3>
+        <p class="columns-paragraph">Evidencija kupaca: </p>
+        <ul class="columns-list">
+            <li class="columns-list-item">Ime kupca</li>
+            <li class="columns-list-item">Datum rodjenja</li>
+            <li class="columns-list-item">Kupljena karta</li>
+            <li class="columns-list-item">Količina kupljenih karata</li>
+        </ul>
+        <a href="~/Kupci" class="btn btn-primary columns-btn">Kupci</a>
+    </div>
+</div>

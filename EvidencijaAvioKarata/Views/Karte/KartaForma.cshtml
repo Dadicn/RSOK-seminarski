@@ -1,0 +1,39 @@
+﻿@model EvidencijaAvioKarata.ViewModels.KartaForma
+@{
+    ViewBag.Title = "KartaForma";
+}
+
+<div class="custom-container">
+    <h2>Karta forma</h2>
+
+    @using (Html.BeginForm("Sacuvaj", "Karte"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Karta.tipKarte)
+            @Html.TextBoxFor(p => p.Karta.tipKarte, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Karta.tipKarte)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Karta.KompanijaId)
+            @Html.DropDownListFor(m => m.Karta.KompanijaId, new SelectList(Model.Kompanije, "Id", "Ime"), "Izaberite kompaniju", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Karta.KompanijaId)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Karta.DestinacijaId)
+            @Html.DropDownListFor(m => m.Karta.DestinacijaId, new SelectList(Model.Destinacije, "Id", "Naziv"), "Izaberite destinaciju", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Karta.DestinacijaId)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Karta.DatumIVreme)
+            @Html.TextBoxFor(p => p.Karta.DatumIVreme, new { @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.Karta.DatumIVreme)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Karta.Cena)
+            @Html.TextBoxFor(p => p.Karta.Cena, new { @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.Karta.Cena)
+        </div>
+        @Html.HiddenFor(p => p.Karta.Id)
+        <button class="btn btn-danger" type="submit">Sačuvaj</button>
+    }
+</div>

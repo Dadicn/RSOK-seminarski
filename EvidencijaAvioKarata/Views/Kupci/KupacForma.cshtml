@@ -1,0 +1,35 @@
+﻿@model EvidencijaAvioKarata.ViewModels.KupacForma
+@{
+    ViewBag.Title = "KupacForma";
+}
+
+<div class="custom-container">
+    <h2>Kupac forma</h2>
+
+    @using (Html.BeginForm("Sacuvaj", "Kupci"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(c => c.Kupac.Ime)
+            @Html.TextBoxFor(c => c.Kupac.Ime, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Kupac.Ime)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Kupac.DatumRodjenja)
+            @Html.TextBoxFor(c => c.Kupac.DatumRodjenja, "{0:d MMM yyyy}", new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Kupac.DatumRodjenja)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Kupac.KartaId)
+            @Html.DropDownListFor(m => m.Kupac.KartaId, new SelectList(Model.Karte, "Id", "tipKarte"), "Izaberi kartu", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Kupac.KartaId)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Kupac.BrojKarata)
+            @Html.TextBoxFor(c => c.Kupac.BrojKarata, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Kupac.BrojKarata)
+        </div>
+        @Html.HiddenFor(c => c.Kupac.Id)
+        <button class="btn btn-danger" type="submit">Sacuvaj</button>
+    }
+</div>
+

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<EvidencijaAvioKarata.Models.Kompanija>
+@{
+    ViewBag.Title = "Kompanije";
+}
+<div class="custom-container">
+    <h2>Kompanije</h2>
+
+    <table id="kompanije" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ime</th>
+                <th>Država</th>
+                <th>Klasa</th>
+                <th>Obriši</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    @Html.ActionLink("Dodaj kompaniju", "DodajKompaniju", "Kompanije", new { @class = "btn btn-danger" })
+</div>
+
+@section scripts
+{
+    <script>
+            $(document).ready(function () {
+                var table = $("#kompanije").DataTable({
+                    ajax: {
+                        url: "/api/kompanije/",
+                        method: "GET",
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            data: "ime",
+                            render: function (data, type, kompanija) {
+                                return "<a href='/kompanije/kompanijaForma/" + kompanija.id + "'>" + kompanija.ime + "</a>";
+                            }
+                        },
+                        {
+                            data: "drzava"
+                        },
+                        {
+                            data: "klasa.naziv"
+                        },
+                        {
+                            data: "id",
+                            render: function (data) {
+                                return "<button class='btn-link js-delete' data-kompanija-id=" + data + ">Obrisi</button>";
+                            }
+                        }
+                    ]
+                });
+
+                $("#kompanije").on("click", ".js-delete", function () {
+                    var button = $(this);
+                    bootbox.confirm("Da li ste sigurni da zelite da obrišete ovu kompaniju?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/kompanije/" + button.attr("data-kompanija-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                }
+                            })
+                        }
+                    })
+                })
+            });
+    </script>
+}
