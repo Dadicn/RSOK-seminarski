@@ -1,0 +1,30 @@
+﻿@model EvidencijaAvioKarata.Models.Destinacija
+@{
+    ViewBag.Title = "DestinacijaForma";
+}
+
+<div class="custom-container">
+    <h2>Destinacija forma</h2>
+
+    @using (Html.BeginForm("Sacuvaj", "Destinacije"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(p => p.Naziv)
+            @Html.TextBoxFor(p => p.Naziv, new { @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.Naziv)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.ImeAerodroma)
+            @Html.TextBoxFor(p => p.ImeAerodroma, new { @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.ImeAerodroma)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Grad)
+            @Html.TextBoxFor(p => p.Grad, new { @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.Grad)
+        </div>
+        @Html.HiddenFor(p => p.Id)
+        <button class="btn btn-danger" type="submit">Sačuvaj</button>
+    }
+</div>
+
